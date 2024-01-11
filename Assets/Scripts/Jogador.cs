@@ -40,9 +40,9 @@ public class Jogador : MonoBehaviour
         {
             other.gameObject.SetActive(false);
 
-            contador += contador;
+            contador = contador + 1;
 
-            pontuacao.text = "Contador: " + pontuacao.ToString();
+            pontuacao.text = "Contador: " + contador.ToString();
         }
     }
 
