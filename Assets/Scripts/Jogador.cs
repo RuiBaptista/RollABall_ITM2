@@ -8,19 +8,21 @@ public class Jogador : MonoBehaviour
 {
     [SerializeField]
     private float velocidade;
-
-
     [SerializeField]
-    private TMP_Text pontuacao; 
-    private int contador;
+    private TMP_Text pontuacao;
+    [SerializeField]
+    private TMP_Text vitoria;
 
+    private int contador;
     private Rigidbody rb;
 
     // Start is called before the first frame update
     void Start()
     {
+        vitoria.text = "";
         rb = GetComponent<Rigidbody>();
         contador = 0;
+        Pontuacao();
     }
 
     private void FixedUpdate()
@@ -40,10 +42,25 @@ public class Jogador : MonoBehaviour
         {
             other.gameObject.SetActive(false);
 
-            contador = contador + 1;
-
-            pontuacao.text = "Contador: " + contador.ToString();
+            contador += 1;
+            Pontuacao();
+            Vitoria(contador);
+          
         }
+    }
+
+    void Vitoria(int contador)
+    {
+        if (contador == 10)
+        {
+            //Vitória
+            vitoria.text = "Parabens Ganhou!";
+        }
+    }
+
+    private void Pontuacao()
+    {
+        pontuacao.text = "Contador: " + contador.ToString();
     }
 
     // Update is called once per frame
